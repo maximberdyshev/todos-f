@@ -1,0 +1,17 @@
+.navbar {
+  height: 50px;
+  width: 100vw;
+  display: flex;
+  align-items: center;
+  padding: 0 15px;
+  background: lightgray;
+}
+
+.navbar__items {
+  margin-left: auto;
+}
+
+.navbar__links {
+  border: 1px solid peru;
+  padding: 5px 15px;
+}
