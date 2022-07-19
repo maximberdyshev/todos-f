@@ -1,6 +1,7 @@
 import React, { useContext } from 'react'
 import { AuthContext } from '../../context/MyContext'
 import MyButton from '../UI/button/MyButton'
+import styles from './AuthWindow.module.css'
 
 const AuthBtn = (props) => {
   const { userData, userDataDB, isAuth, setIsAuth, setUserData } =
@@ -36,7 +37,7 @@ const AuthBtn = (props) => {
 
   return (
     <div>
-      <form className='auth-btn'>
+      <form className={styles.authBtn}>
         <MyButton onClick={getLogin}>LogIn</MyButton>
         <MyButton onClick={regIn}>Register</MyButton>
       </form>

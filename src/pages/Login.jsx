@@ -5,7 +5,7 @@ import MyModal from '../components/UI/modal/MyModal'
 
 const Login = () => {
   const [modal, setModal] = useState(false)
-  const [logState, setLogState] = useState()
+  const [logState, setLogState] = useState(null)
 
   return (
     <div className='login'>

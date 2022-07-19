@@ -1,8 +1,11 @@
 import './styles/App.css'
 import React, { useState } from 'react'
-import { BrowserRouter } from 'react-router-dom'
+import { Routes, Route, Navigate } from 'react-router-dom'
 import { AuthContext } from './context/MyContext'
-import MainForm from './components/MainForm'
+import MyNavbar from './components/Navbar/MyNavbar'
+import Login from './pages/Login'
+import Todos from './pages/Todos'
+import Error from './pages/Error'
 
 function App() {
   // состояние авторизации пользователя
@@ -46,22 +49,41 @@ function App() {
       completed: false,
       initiator: 'Smith',
       executor: 'Smith',
-    }
+    },
   ])
 
+  const value = {
+    isAuth,
+    setIsAuth,
+    userData,
+    userDataDB,
+    setUserData,
+  }
+
   return (
-    <AuthContext.Provider
-      value={{
-        isAuth,
-        setIsAuth,
-        userData,
-        userDataDB,
-        setUserData,
-      }}>
-      <BrowserRouter>
-        <MainForm todos={todos} setTodos={setTodos}/>
-      </BrowserRouter>
-    </AuthContext.Provider>
+    <div>
+      <AuthContext.Provider value={value}>
+        {localStorage.getItem('authorized', '1') ? (
+          <div className='App'>
+            <MyNavbar todos={todos} setTodos={setTodos} />
+            <Routes>
+              <Route
+                path='/todo'
+                element={<Todos todos={todos} setTodos={setTodos} />}
+              />
+              <Route path='/error' element={<Error />} />
+              <Route path='*' element={<Navigate to='/todo' />} />
+            </Routes>
+          </div>
+        ) : (
+          <Routes>
+            <Route path='/login' element={<Login />} />
+            <Route path='/error' element={<Error />} />
+            <Route path='*' element={<Navigate to='/login' />} />
+          </Routes>
+        )}
+      </AuthContext.Provider>
+    </div>
   )
 }
 

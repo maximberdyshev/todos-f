@@ -2,13 +2,14 @@ import React, { useState } from 'react'
 import MyButton from '../UI/button/MyButton'
 import MyModal from '../UI/modal/MyModal'
 import TodoUpdate from './TodoUpdate'
+import styles from './Todo.module.css'
 
 export default function TodoItem(props) {
   const [visible, setVisible] = useState(false)
 
   return (
-    <div className='TodoItem'>
-      <div className='todo-item'>
+    <div className={styles.TodoItems}>
+      <div className={styles.todoItem}>
         {props.todo.completed ? (
           <p style={{ textDecoration: 'line-through', color: 'green' }}>
             {props.number}. {props.todo.title}
@@ -21,7 +22,7 @@ export default function TodoItem(props) {
         <p>{props.todo.body}</p>
         <p>Ответственный: {props.todo.executor} </p>
       </div>
-      <div className='todo-item'>
+      <div className={styles.todoItem}>
         <p>Приоритет: {props.todo.priority} </p>
         <p>Дата окончания: {props.todo.dateEnd} </p>
         {props.todo.completed ? (
@@ -30,7 +31,7 @@ export default function TodoItem(props) {
           <p>Статус задачи: в работе </p>
         )}
       </div>
-      <div className='todo-btn'>
+      <div className={styles.todBtn}>
         <MyButton onClick={() => setVisible(true)}>
           Просмотреть
         </MyButton>
