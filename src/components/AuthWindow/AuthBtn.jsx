@@ -3,9 +3,8 @@ import { AuthContext } from '../../context/MyContext'
 import MyButton from '../UI/button/MyButton'
 import styles from './AuthWindow.module.css'
 
-const AuthBtn = (props) => {
-  const { userData, userDataDB, isAuth, setIsAuth, setUserData } =
-    useContext(AuthContext)
+const AuthBtn = ({ userData, setUserData, setModal, setLogState }) => {
+  const { userDataDB, isAuth, setIsAuth } = useContext(AuthContext)
 
   function getLogin(event) {
     event.preventDefault()
@@ -22,8 +21,8 @@ const AuthBtn = (props) => {
     } else {
       // сообщение о неудачном логине
       // не реализована вариативность (причина: неправильный пароль или логин)
-      props.setLogState('Неудачный логин...')
-      props.setModal(true)
+      setLogState('Неудачный логин...')
+      setModal(true)
     }
   }
 
@@ -31,8 +30,8 @@ const AuthBtn = (props) => {
     event.preventDefault()
 
     // должна быть реализована регистрация нового пользователя, но не реализовано
-    props.setLogState('Окно регистрации пользователя. Не реализовано.')
-    props.setModal(true)
+    setLogState('Окно регистрации пользователя. Не реализовано.')
+    setModal(true)
   }
 
   return (

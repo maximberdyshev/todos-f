@@ -17,18 +17,10 @@ function App() {
     userPass: '123',
   })
 
-  // состояние для полей логина
-  const [userData, setUserData] = useState({
-    userLogin: '',
-    userPass: '',
-  })
-
   const authValue = {
     isAuth,
     setIsAuth,
-    userData,
     userDataDB,
-    setUserData,
   }
 
   return (
