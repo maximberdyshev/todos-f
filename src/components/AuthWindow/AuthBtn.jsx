@@ -3,8 +3,8 @@ import { AuthContext } from '../../context/MyContext'
 import MyButton from '../UI/button/MyButton'
 import styles from './AuthWindow.module.css'
 
-const AuthBtn = ({ userData, setUserData, setModal, setLogState }) => {
-  const { userDataDB, isAuth, setIsAuth } = useContext(AuthContext)
+const AuthBtn = ({ userData, userDataDB, setUserData, setModal, setLogState }) => {
+  const { isAuth, setIsAuth } = useContext(AuthContext)
 
   function getLogin(event) {
     event.preventDefault()

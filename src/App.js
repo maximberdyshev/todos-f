@@ -8,24 +8,11 @@ import Error from './pages/Error'
 
 function App() {
   // состояние авторизации пользователя
-  const [isAuth, setIsAuth] = useState(true)
-
-  // имитация БД с логином и паролем
-  // not used
-  const [userDataDB] = useState({
-    userLogin: 'Smith',
-    userPass: '123',
-  })
-
-  const authValue = {
-    isAuth,
-    setIsAuth,
-    userDataDB,
-  }
+  const [isAuth, setIsAuth] = useState(false)
 
   return (
     <div>
-      <AuthContext.Provider value={authValue}>
+      <AuthContext.Provider value={{isAuth, setIsAuth}}>
         {localStorage.getItem('authorized', '1') ? (
           <div className='App'>
             <Routes>
