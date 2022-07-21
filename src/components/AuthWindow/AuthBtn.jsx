@@ -1,5 +1,6 @@
 import React, { useContext } from 'react'
 import { AuthContext } from '../../context/MyContext'
+import AuthCheck from '../../validators/AuthCheck'
 import MyButton from '../UI/button/MyButton'
 import styles from './AuthWindow.module.css'
 
@@ -9,19 +10,12 @@ const AuthBtn = ({ userData, userDataDB, setUserData, setModal, setLogState }) =
   function getLogin(event) {
     event.preventDefault()
 
-    // иммитация проверки авторизации пользователя
-    if (
-      userData.userLogin === userDataDB.userLogin &&
-      userData.userPass === userDataDB.userPass
-    ) {
-      setIsAuth(!isAuth)
-      localStorage.setItem('authorized', '1')
-      localStorage.setItem('userName', userData.userLogin)
+    if (AuthCheck.logInCheck(userData, userDataDB))
+    {
       setUserData({ userLogin: '', userPass: '' })
-    } else {
-      // сообщение о неудачном логине
-      // не реализована вариативность (причина: неправильный пароль или логин)
-      setLogState('Неудачный логин...')
+      setIsAuth(!isAuth)
+    }  else  {
+      setLogState('Неудачный логин...') 
       setModal(true)
     }
   }
