@@ -12,6 +12,7 @@ const Login = () => {
   })
 
   // имитация БД с логином и паролем
+  // вероятно надо вынести в отдельный контекст?
   const [userDataDB] = useState({
     userLogin: 'Smith',
     userPass: '123',
